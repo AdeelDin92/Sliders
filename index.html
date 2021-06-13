@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="img-slider">
+        <div class="slide active">
+            <img src="Images/1.jpg" alt="">
+            <div class="info">
+                <h2><span id="Crazy">C</span>razy Hat</h2>
+                <p>Made With Finest Green Threads Organic & Sustainable.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="Images/4.jpg" alt="">
+            <div class="info">
+                <h2 ><span id="Leica">L</span>eica Camera</h2>
+                <p>Taking Photos Was Never Too Easy.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="Images/2.jpg" alt="">
+            <div class="info">
+                <h2><span id="Lemon">L</span>emon Shoes</h2>
+                <p>Unmatachable Durability For Ultimate Sports.</p>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="Images/3.jpg" alt="">
+            <div class="info">
+                <h2><span id="Picaso">P</span>icaso Water</h2>
+                <p>Enriching Splash To Your Design With Picaso Liqui.</p>
+            </div>
+        </div>        
+        <div class="navigation">
+            <div class="btn active"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
+        </div>    
+    
+    </div>
+    <script type="text/javascript">
+         
+    var slides = document.querySelectorAll('.slide');
+    var btns = document.querySelectorAll('.btn');
+    let currentSlide = 1;
+
+    // Javascript for image slider manual navigation
+    var manualNav = function(manual){
+      slides.forEach((slide) => {
+        slide.classList.remove('active');
+
+        btns.forEach((btn) => {
+          btn.classList.remove('active');
+        });
+      });
+
+      slides[manual].classList.add('active');
+      btns[manual].classList.add('active');
+    }
+
+    btns.forEach((btn, i) => {
+      btn.addEventListener("click", () => {
+        manualNav(i);
+        currentSlide = i;
+      });
+    });
+        // Javascript for image slider autoplay navigation
+        var repeat = function(activeClass){
+      let active = document.getElementsByClassName('active');
+      let i = 1;
+
+      var repeater = () => {
+        setTimeout(function(){
+          [...active].forEach((activeSlide) => {
+            activeSlide.classList.remove('active');
+          });
+
+        slides[i].classList.add('active');
+        btns[i].classList.add('active');
+        i++;
+
+        if(slides.length == i){
+          i = 0;
+        }
+        if(i >= slides.length){
+          return;
+        }
+        repeater();
+      }, 2000);
+      }
+      repeater();
+    }
+    repeat();
+    </script>
+    
+    </body>
+</html>
